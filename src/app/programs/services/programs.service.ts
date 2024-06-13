@@ -12,7 +12,7 @@ export class ProgramsService {
   private loginUrl: string = "/api/default/login";
   private createAppUrl: string = "/api/default/apps";
   private getAppsUrl: string = "/api/default/apps/users";
-
+  private createUserUrl: string = "/api/default/signup";
   constructor(private httpClient: HttpClient) { }
 
   postLogin(email: string, password: string): Observable<any> {
@@ -40,6 +40,18 @@ export class ProgramsService {
   getApps(userId: number): Observable<Program[]> {
     return this.httpClient.get<any>(`${this.getAppsUrl}/${userId}`).pipe(
       map((response: any) => response.data as Program[])
+    );
+  }
+
+  createUser(name: string, lastName: string, email: string, password: string): Observable<any> {
+    const body = {
+      name: name,
+      last_name: lastName,
+      email: email,
+      password: password
+    };
+    return this.httpClient.post<any>(this.createUserUrl, body).pipe(
+      map((response: any) => response.data)
     );
   }
 }

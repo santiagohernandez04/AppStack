@@ -11,20 +11,32 @@ import {ProgramsService} from "../services/programs.service";
 export class AppsDetailComponent implements OnInit{
   programs: Program[] = [];
   originalPrograms: Program[] = [];
-  userId: number = 12;
+  userId: number | null = null;
   constructor(public programsService:ProgramsService) {
   }
   ngOnInit(): void {
-    this.getApps();
+    this.userId = parseInt(localStorage.getItem('userId') || '', 10); // Parseamos el userId guardado en localStorage
+    if (this.userId) {
+      this.getApps();
+    } else {
+      console.error('No userId found in localStorage');
+    }
   }
   getApps() {
-    this.programsService.getApps(this.userId).subscribe(
-      (programs: Program[]) => {
-        this.programs = programs;
-        this.originalPrograms = [...programs];
-      }
-    );
+    if (this.userId) {
+      this.programsService.getApps(this.userId).subscribe(
+        (programs: Program[]) => {
+          this.programs = programs;
+          this.originalPrograms = [...programs];
+        },
+        error => {
+          console.error('Error fetching apps:', error);
+          // Manejar el error, por ejemplo, mostrar un mensaje al usuario
+        }
+      );
+    }
   }
+
 
   programFilter(event: any) {
     const filter = event.target.value.trim().toLowerCase();
