@@ -1,0 +1,44 @@
+.Navbar {
+  width: 100%;
+  height: 12vh;
+  padding: 8px 16px;
+  background: #181e3a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.Logo {
+  width: 50%;
+  max-width: 400px;
+  padding: 8px 0;
+  color: #F8F9FA;
+  font-size: 20px;
+  font-family: Inter;
+  font-weight: 600;
+  word-wrap: break-word;
+}
+
+.Avatar {
+  width: 50px;
+  height: 50px;
+  background: #FECBA1;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.Us {
+  margin: 0;
+  padding: 0;
+  color: #CA6510;
+  font-size: 20px;
+  font-family: Actor;
+  font-weight: 400;
+  line-height: 50px;
+  text-align: center;
+  word-wrap: break-word;
+}

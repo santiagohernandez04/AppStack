@@ -1,0 +1,52 @@
+<div class="container-scroll">
+  <div class="container" style="padding: 10px">
+    <div class="title">List Programs</div>
+  </div>
+
+  <div style="width: 95%; margin-bottom: 40px; margin-left: 20px">
+    <div class="d-flex align-items-center">
+      <div class="input-container" style="position: relative;">
+        <i class="fas fa-search" style="position: absolute; left: 20px; top: 50%; transform: translateY(-50%);"></i>
+        <input placeholder="Search" (input)="programFilter($event)"style="padding-left: 40px;">
+      </div>
+    </div>
+  </div>
+
+  <table class="table table-striped" style="width: 900px; margin: 40px">
+    <thead>
+    <tr>
+      <th>Program</th>
+      <th>Link</th>
+      <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngIf="programs.length === 0">
+      <tr>
+        <td colspan="4" class="text-center">No hay programas agregados</td>
+      </tr>
+    </ng-container>
+    <ng-container *ngFor="let program of programs">
+      <tr>
+        <td>{{ program.name }}</td>
+        <td>{{ program.link }}</td>
+        <td>
+            <span [ngClass]="{'status-active': program.status === 'Active', 'status-inactive': program.status === 'Inactive'}">
+              {{ program.status }}
+            </span>
+        </td>
+        <td>
+          <div class="icons">
+            <button type="button" class="btn btn-danger">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+            <button type="button" class="btn btn-primary">
+              <i class="fas fa-pencil-alt"></i>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</div>

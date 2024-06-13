@@ -1,0 +1,38 @@
+/* Estilo de los botones */
+.ova {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  padding: 4px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ova:hover {
+  color: white;
+  background: rgba(42, 54, 107, 0.61);
+}
+
+@media (max-width: 600px) {
+  .Component2 {
+    width: 50px;
+  }
+
+  .DropdownMenu {
+    top: 10%;
+    height: auto;
+  }
+
+  .Text {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+}
