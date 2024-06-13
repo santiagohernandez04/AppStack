@@ -31,7 +31,7 @@
         <td>{{ program.name }}</td>
         <td>{{ program.link }}</td>
         <td>
-            <span [ngClass]="{'status-active': program.status === 'Active', 'status-inactive': program.status === 'Inactive'}">
+            <span [ngClass]="{'status-active': program.status === 'Active', 'status-inactive': program.status === 'Inactive', 'status-pending': program.status === 'PENDING'}">
               {{ program.status }}
             </span>
         </td>

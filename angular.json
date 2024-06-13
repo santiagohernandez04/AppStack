@@ -79,7 +79,8 @@
               "buildTarget": "Frontend-AppStack:build:production"
             },
             "development": {
-              "buildTarget": "Frontend-AppStack:build:development"
+              "buildTarget": "Frontend-AppStack:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

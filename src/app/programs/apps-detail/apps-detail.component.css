@@ -151,6 +151,24 @@
   border-radius: 50%;
   margin-right: 5px;
 }
+.status-pending {
+  background-color: rgb(255, 255, 255);
+  color: #4735ea;
+  padding: 5px 10px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.status-pending::before {
+  content: '';
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #4136dd;
+  border-radius: 50%;
+  margin-right: 5px;
+}
 
 
 
