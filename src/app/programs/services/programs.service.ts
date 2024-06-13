@@ -9,14 +9,37 @@ import { Program } from "../model/program";
 })
 export class ProgramsService {
 
-  private baseUrl: string = "https://my-json-server.typicode.com/santiagohernandez04/apps-api/db";
+  private loginUrl: string = "/api/default/login";
+  private createAppUrl: string = "/api/default/apps";
+  private getAppsUrl: string = "/api/default/apps/users";
 
   constructor(private httpClient: HttpClient) { }
 
-  getPrograms(): Observable<Program[]> {
-    return this.httpClient.get<any>(this.baseUrl).pipe(
-      map((response: any) => response.program as Program[])
+  postLogin(email: string, password: string): Observable<any> {
+    const body = {
+      email: email,
+      password: password
+    };
+    return this.httpClient.post<any>(this.loginUrl, body).pipe(
+      map((response: any) => response.data)
     );
   }
 
+  postCreateApp(name: string, repositoryUrl: string, userId: number, deploymentDirectory: string = "/docs/"): Observable<any> {
+    const body = {
+      name: name,
+      repository_url: repositoryUrl,
+      user_id: userId,
+      deployment_directory: deploymentDirectory
+    };
+    return this.httpClient.post<any>(this.createAppUrl, body).pipe(
+      map((response: any) => response.data)
+    );
+  }
+
+  getApps(userId: number): Observable<Program[]> {
+    return this.httpClient.get<any>(`${this.getAppsUrl}/${userId}`).pipe(
+      map((response: any) => response.data as Program[])
+    );
+  }
 }

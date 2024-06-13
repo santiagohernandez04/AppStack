@@ -11,19 +11,21 @@ import {ProgramsService} from "../services/programs.service";
 export class AppsDetailComponent implements OnInit{
   programs: Program[] = [];
   originalPrograms: Program[] = [];
+  userId: number = 12;
   constructor(public programsService:ProgramsService) {
   }
   ngOnInit(): void {
-    this.getPrograms();
+    this.getApps();
   }
-  getPrograms() {
-    this.programsService.getPrograms().subscribe(
-      (programs2: Array<Program>) => {
-        this.programs = programs2;
-        this.originalPrograms = [...programs2];
+  getApps() {
+    this.programsService.getApps(this.userId).subscribe(
+      (programs: Program[]) => {
+        this.programs = programs;
+        this.originalPrograms = [...programs];
       }
     );
   }
+
   programFilter(event: any) {
     const filter = event.target.value.trim().toLowerCase();
     if (!filter) {
