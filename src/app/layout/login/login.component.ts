@@ -3,6 +3,7 @@ import {Router} from "@angular/router";
 import {AppService} from "../../programs/services/app.service";
 import Swal from "sweetalert2";
 import swal from "sweetalert2";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-login',
@@ -53,7 +54,7 @@ export class LoginComponent {
       showConfirmButton: true,
       showCancelButton: true,
       cancelButtonColor: '#d33',
-      confirmButtonText: 'Aceptar',
+      confirmButtonText: 'Agree to',
       focusCancel: true,
       preConfirm: () => {
         const name = (document.getElementById('swal-input1') as HTMLInputElement).value;
@@ -79,12 +80,16 @@ export class LoginComponent {
               text: 'User has been created successfully.'
             });
           },
-          error => {
+          (error: HttpErrorResponse) => {
             console.error('User creation failed:', error);
+            let errorMessage = 'There was an error creating the user.';
+            if (error.error && error.error.error) {
+              errorMessage = error.error.error;
+            }
             Swal.fire({
               icon: 'error',
               title: 'User Creation Failed',
-              text: 'There was an error creating the user.'
+              text: errorMessage
             });
           }
         );
