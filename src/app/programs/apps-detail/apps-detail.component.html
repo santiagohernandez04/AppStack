@@ -1,6 +1,7 @@
 <div class="container-scroll">
   <div class="container" style="padding: 10px">
     <div class="title">List Programs</div>
+    <button (click)="createApps()" class="btn" style="width: 200px; background: #2A366B; color: #F7F7F7;margin: 10px">Add new app</button>
   </div>
 
   <div style="width: 95%; margin-bottom: 40px; margin-left: 20px">
@@ -23,15 +24,17 @@
     <tbody>
     <ng-container *ngIf="apps.length === 0">
       <tr>
-        <td colspan="4" class="text-center">No hay programas agregados</td>
+        <td colspan="4" class="text-center">No apps added</td>
       </tr>
     </ng-container>
     <ng-container *ngFor="let program of apps">
       <tr>
         <td>{{ program.name }}</td>
-        <td>{{ program.link }}</td>
         <td>
-            <span [ngClass]="{'status-active': program.status === 'Active', 'status-inactive': program.status === 'Inactive', 'status-pending': program.status === 'PENDING'}">
+          <a [href]="program.repository_url" target="_blank">{{ program.repository_url }}</a>
+        </td>
+        <td>
+            <span [ngClass]="{'status-active': program.status === 'ACTIVE', 'status-inactive': program.status === 'INACTIVE', 'status-pending': program.status === 'PENDING'}">
               {{ program.status }}
             </span>
         </td>

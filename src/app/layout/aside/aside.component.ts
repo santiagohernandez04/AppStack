@@ -24,13 +24,13 @@ export class AsideComponent {
   }
   logout(){
     swal.fire({
-      title: "¿Estás seguro de que deseas cerrar la sesión?",
+      title: "Are you sure you want to log out?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#d33",
       cancelButtonColor: "#3085d6",
-      confirmButtonText: "si, cerrar sesión",
-      cancelButtonText:"Cancelar"
+      confirmButtonText: "yes, log out",
+      cancelButtonText:"Cancel"
     }).then((result) => {
       if (result.isConfirmed) {
         this.router.navigate(['']);
