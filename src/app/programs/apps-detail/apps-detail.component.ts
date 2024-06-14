@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Program} from "../model/program";
-import {ProgramsService} from "../services/programs.service";
+import {App} from "../model/app";
+import {AppService} from "../services/app.service";
 
 
 @Component({
@@ -9,10 +9,10 @@ import {ProgramsService} from "../services/programs.service";
   styleUrl: './apps-detail.component.css'
 })
 export class AppsDetailComponent implements OnInit{
-  programs: Program[] = [];
-  originalPrograms: Program[] = [];
+  apps: App[] = [];
+  originalApps: App[] = [];
   userId: number | null = null;
-  constructor(public programsService:ProgramsService) {
+  constructor(public programsService:AppService) {
   }
   ngOnInit(): void {
     this.userId = parseInt(localStorage.getItem('userId') || '', 10); // Parseamos el userId guardado en localStorage
@@ -25,9 +25,9 @@ export class AppsDetailComponent implements OnInit{
   getApps() {
     if (this.userId) {
       this.programsService.getApps(this.userId).subscribe(
-        (programs: Program[]) => {
-          this.programs = programs;
-          this.originalPrograms = [...programs];
+        (programs: App[]) => {
+          this.apps = programs;
+          this.originalApps = [...programs];
         },
         error => {
           console.error('Error fetching apps:', error);
@@ -41,9 +41,9 @@ export class AppsDetailComponent implements OnInit{
   programFilter(event: any) {
     const filter = event.target.value.trim().toLowerCase();
     if (!filter) {
-      this.programs = [...this.originalPrograms];
+      this.apps = [...this.originalApps];
     } else {
-      this.programs = this.originalPrograms.filter(program =>
+      this.apps = this.originalApps.filter(program =>
         program.name.toLowerCase().includes(filter)
       );
     }

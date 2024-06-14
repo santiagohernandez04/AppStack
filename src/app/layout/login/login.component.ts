@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
-import {ProgramsService} from "../../programs/services/programs.service";
+import {AppService} from "../../programs/services/app.service";
 import Swal from "sweetalert2";
 import swal from "sweetalert2";
 
@@ -13,7 +13,7 @@ export class LoginComponent {
   email: string = '';
   password: string = '';
 
-  constructor(private router: Router, private programsService: ProgramsService) { }
+  constructor(private router: Router, private programsService: AppService) { }
 
   login() {
     this.programsService.postLogin(this.email, this.password).subscribe(
