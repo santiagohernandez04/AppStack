@@ -2,12 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { Program } from "../model/program";
+import { App } from "../model/app";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProgramsService {
+export class AppService {
 
   private loginUrl: string = "/api/default/login";
   private createAppUrl: string = "/api/default/apps";
@@ -37,9 +37,9 @@ export class ProgramsService {
     );
   }
 
-  getApps(userId: number): Observable<Program[]> {
+  getApps(userId: number): Observable<App[]> {
     return this.httpClient.get<any>(`${this.getAppsUrl}/${userId}`).pipe(
-      map((response: any) => response.data as Program[])
+      map((response: any) => response.data as App[])
     );
   }
 

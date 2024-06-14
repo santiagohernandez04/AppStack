@@ -15,18 +15,18 @@
   <table class="table table-striped" style="width: 900px; margin: 40px">
     <thead>
     <tr>
-      <th>Program</th>
+      <th>App</th>
       <th>Link</th>
       <th>Status</th>
     </tr>
     </thead>
     <tbody>
-    <ng-container *ngIf="programs.length === 0">
+    <ng-container *ngIf="apps.length === 0">
       <tr>
         <td colspan="4" class="text-center">No hay programas agregados</td>
       </tr>
     </ng-container>
-    <ng-container *ngFor="let program of programs">
+    <ng-container *ngFor="let program of apps">
       <tr>
         <td>{{ program.name }}</td>
         <td>{{ program.link }}</td>

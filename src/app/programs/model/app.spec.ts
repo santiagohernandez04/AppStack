@@ -1,7 +1,7 @@
-import { Program } from './program';
+import { App } from './app';
 
 describe('Program', () => {
   it('should create an instance', () => {
-    expect(new Program()).toBeTruthy();
+    expect(new App()).toBeTruthy();
   });
 });
